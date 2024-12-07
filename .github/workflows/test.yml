@@ -1,4 +1,4 @@
-name: CI CD pipeline
+name: Run Next.js tests
 
 on:
   push:
@@ -27,11 +27,15 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      # 4. Build the application
+      # 4. Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      # 5. Build the application
       - name: Build the app
         run: yarn build
 
-      # 5. Start the application in the background
+      # 6. Start the application in the background
       - name: Start the app
         run: |
           yarn start &
@@ -39,14 +43,21 @@ jobs:
         env:
           PORT: 3000 # Ustaw port, na którym działa aplikacja
 
-      # 6. Wait for the server to be ready
-      - name: Wait for server to start
+      # 7. Wait for the server to be ready
+      - name: Wait for the server to start
         run: npx wait-on http://localhost:3000
 
-      # 7. Run tests
+      # 8. Run tests
       - name: Run tests
         run: yarn test
 
-      # 8. Stop the server
+      # 9. Stop the server
       - name: Stop the app
         run: kill $(cat .pidfile)
+
+      # 10. Archive mochawesome report
+      - name: Archive mochawesome report
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
