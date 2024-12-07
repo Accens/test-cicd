@@ -31,7 +31,7 @@ export function ImageWithSizeOverlay({ src, srcSet, sizes, overlayPosition }) {
                 >{`Size: ${Math.ceil(imgSize / 1024)}KB`}</span>
             )}
 
-            <img src={src} srcSet={srcSet} sizes={sizes}  onLoad={handleImageLoad} ref={imageRef} />
+            <img src={src} srcSet={srcSet} sizes={sizes} alt="Corgi" onLoad={handleImageLoad} ref={imageRef} />
         </div>
     );
 }
