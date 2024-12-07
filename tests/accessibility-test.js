@@ -12,13 +12,40 @@ describe('Accessibility test with Playwright and Axe', function () {
   });
 
   after(async () => {
-    // Log violations
-    console.log('Accessibility violations:', results.violations);
+    await page.close();
+    await browser.close();
+  });
 
+  it('should have no serious accessibility violations on home', async function () {
+    await page.goto('http://localhost:3000');
+
+    // Run the accessibility test using the reusable function
+    await runAxeAccessibilityTest(page);  });
+
+  it('should have no serious accessibility violations on revalidation', async function () {
+    await page.goto('http://localhost:3000/revalidation');
+    // Run the accessibility test using the reusable function
+    await runAxeAccessibilityTest(page);  });
+
+  it('should have no serious accessibility violations on image-cdn', async function () {
+    await page.goto('http://localhost:3000/image-cdn');
+
+    // Run the accessibility test using the reusable function
+    await runAxeAccessibilityTest(page);
+  });
+});
+
+// Reusable function for running accessibility checks
+async function runAxeAccessibilityTest(page) {
+  
+    results = await new AxeBuilder({ page }).analyze();  
+  
     // Check for serious violations
     const seriousViolations = results.violations.filter(
       (violation) => violation.impact === 'serious'
     );
+  
+    // Assert that there are no serious violations
     assert.strictEqual(
       seriousViolations.length,
       0,
@@ -28,26 +55,4 @@ describe('Accessibility test with Playwright and Axe', function () {
         2
       )}`
     );
-
-    await page.close();
-    await browser.close();
-  });
-
-  it('should have no serious accessibility violations on home', async function () {
-    await page.goto('http://localhost:3000');
-
-    results = await new AxeBuilder({ page }).analyze();  
-  });
-
-  it('should have no serious accessibility violations on revalidation', async function () {
-    await page.goto('http://localhost:3000/revalidation');
-
-    results = await new AxeBuilder({ page }).analyze();  
-  });
-
-  it('should have no serious accessibility violations on image-cdn', async function () {
-    await page.goto('http://localhost:3000/image-cdn');
-
-    results = await new AxeBuilder({ page }).analyze();  
-  });
-});
+  }
