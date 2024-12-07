@@ -1,0 +1,52 @@
+name: CI CD pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - test1
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Użyj wersji Node.js zgodnej z Twoim projektem
+          cache: 'yarn'
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # 4. Build the application
+      - name: Build the app
+        run: yarn build
+
+      # 5. Start the application in the background
+      - name: Start the app
+        run: |
+          yarn start &
+          echo $! > .pidfile # Zapisz PID procesu, aby zatrzymać serwer później
+        env:
+          PORT: 3000 # Ustaw port, na którym działa aplikacja
+
+      # 6. Wait for the server to be ready
+      - name: Wait for server to start
+        run: npx wait-on http://localhost:3000
+
+      # 7. Run tests
+      - name: Run tests
+        run: yarn test
+
+      # 8. Stop the server
+      - name: Stop the app
+        run: kill $(cat .pidfile)
