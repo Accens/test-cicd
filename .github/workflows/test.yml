@@ -67,3 +67,9 @@ jobs:
         with:
           name: mochawesome-report
           path: mochawesome-report/
+      
+      - name: Fail on test errors
+      if: failure() # Warunek, który uruchomi się tylko jeśli wcześniejsze kroki zakończą się błędem
+      run: |
+        echo "Tests failed. Failing the job."
+        exit 1
