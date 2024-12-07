@@ -57,6 +57,7 @@ jobs:
 
       # 10. Archive mochawesome report
       - name: Archive mochawesome report
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: mochawesome-report
