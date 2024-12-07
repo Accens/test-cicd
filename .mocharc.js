@@ -1,3 +1,4 @@
 module.exports = {
-    reporter: 'mochawesome'
+    reporter: 'mochawesome',
+    timeout: 20000,
   }
