@@ -1,5 +1,5 @@
 const { chromium } = require('playwright');
-const axeCore = require('axe-core');
+const { AxeBuilder } = require('@axe-core/playwright');
 const assert = require('assert');
 
 describe('Accessibility test with Playwright and Axe', function () {
@@ -7,46 +7,47 @@ describe('Accessibility test with Playwright and Axe', function () {
 
   before(async () => {
     browser = await chromium.launch();
+    context = await browser.newContext();
+    page = await context.newPage();
   });
 
   after(async () => {
-    await browser.close();
-  });
-
-  it('should have no critical accessibility violations', async function () {
-    page = await browser.newPage();
-    await page.goto('http://localhost:3000');
-
-    // Inject Axe script into the page
-    await page.addScriptTag({ content: axeCore.source });
-
-    // Run Axe analysis
-    const results = await page.evaluate(() => {
-      return new Promise((resolve) => {
-        window.axe.run((err, results) => {
-          if (err) throw err;
-          resolve(results);
-        });
-      });
-    });
-
     // Log violations
     console.log('Accessibility violations:', results.violations);
 
-    // Check for critical violations
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === 'critical'
+    // Check for serious violations
+    const seriousViolations = results.violations.filter(
+      (violation) => violation.impact === 'serious'
     );
     assert.strictEqual(
-      criticalViolations.length,
+      seriousViolations.length,
       0,
-      `Found critical accessibility violations: ${JSON.stringify(
-        criticalViolations,
+      `Found serious accessibility violations: ${JSON.stringify(
+        seriousViolations,
         null,
         2
       )}`
     );
 
     await page.close();
+    await browser.close();
+  });
+
+  it('should have no serious accessibility violations on home', async function () {
+    await page.goto('http://localhost:3000');
+
+    results = await new AxeBuilder({ page }).analyze();  
+  });
+
+  it('should have no serious accessibility violations on revalidation', async function () {
+    await page.goto('http://localhost:3000/revalidation');
+
+    results = await new AxeBuilder({ page }).analyze();  
+  });
+
+  it('should have no serious accessibility violations on image-cdn', async function () {
+    await page.goto('http://localhost:3000/image-cdn');
+
+    results = await new AxeBuilder({ page }).analyze();  
   });
 });
