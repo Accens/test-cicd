@@ -15,7 +15,7 @@ describe('Accessibility test with Playwright and Axe', function () {
 
   it('should have no critical accessibility violations', async function () {
     page = await browser.newPage();
-    await page.goto('https://www.bnpparibas.pl');
+    await page.goto('http://localhost:3000');
 
     // Inject Axe script into the page
     await page.addScriptTag({ content: axeCore.source });
