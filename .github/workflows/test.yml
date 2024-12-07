@@ -17,20 +17,19 @@ jobs:
         uses: actions/checkout@v3
 
       # 2. Set up Node.js
+      - name: Setup cache for Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.yarn/cache
+            node_modules  
+          key: node-cache-Linux-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            node-cache-Linux-yarn-
 
-    - name: Setup cache for Node.js modules
-      uses: actions/cache@v3
-      with:
-        node-version: 18
-        path: |
-          ~/.yarn/cache 
-          node_modules  
-        key: node-cache-Linux-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          node-cache-Linux-yarn-
-
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      # 3. Install dependencies
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
       # 4. Install Playwright browsers
       - name: Install Playwright browsers
@@ -68,8 +67,9 @@ jobs:
           name: mochawesome-report
           path: mochawesome-report/
       
+      # 11. Fail on test errors
       - name: Fail on test errors
-      if: failure() # Warunek, który uruchomi się tylko jeśli wcześniejsze kroki zakończą się błędem
-      run: |
-        echo "Tests failed. Failing the job."
-        exit 1
+        if: failure() # Uruchom tylko, jeśli poprzednie kroki zakończą się błędem
+        run: |
+          echo "Tests failed. Failing the job."
+          exit 1
