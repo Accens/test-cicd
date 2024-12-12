@@ -34,3 +34,6 @@ jobs:
       # 5. Build the application
       - name: Build the app
         run: yarn build
+
+      - name: Lint project
+        run: npm run lint
