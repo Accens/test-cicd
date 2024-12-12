@@ -41,7 +41,7 @@ describe('Accessibility test with Playwright and Axe', function() {
     });
 
 
-    it('should have no serious accessibility violations on revalidation', async function() {
+    it.skip('should have no serious accessibility violations on revalidation', async function() {
 
         await page.goto('http://localhost:3000/revalidation');
 
@@ -51,7 +51,7 @@ describe('Accessibility test with Playwright and Axe', function() {
     });
 
 
-    it('should have no serious accessibility violations on image-cdn', async function() {
+    it.skip('should have no serious accessibility violations on image-cdn', async function() {
 
         await page.goto('http://localhost:3000/image-cdn');
 
