@@ -17,11 +17,9 @@ export async function uploadShapeAction({ parameters }) {
 
 export async function listShapesAction() {
     const data = await store().list();
-    const keys = data.blobs.map(({ key }) => key);
-    return keys;
+    return data.blobs.map(({ key }) => key);
 }
 
 export async function getShapeAction({ keyName }) {
-    const data = await store().get(keyName, { type: 'json' });
-    return data;
+    return await store().get(keyName, { type: 'json' });
 }
