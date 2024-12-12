@@ -59,21 +59,21 @@ jobs:
       - name: Run tests
         run: yarn test
 
-#      # 10. Stop the server
-#      - name: Stop the app
-#        run: kill $(cat .pidfile)
-#
-#      # 11. Archive mochawesome report
-#      - name: Archive mochawesome report
-#        if: always()
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: mochawesome-report
-#          path: mochawesome-report/
-#
-#      # 12. Fail on test errors
-#      - name: Fail on test errors
-#        if: failure()
-#        run: |
-#          echo "Tests failed. Failing the job."
-#          exit 1
+      # 10. Stop the server
+      - name: Stop the app
+        run: kill $(cat .pidfile)
+
+      # 11. Archive mochawesome report
+      - name: Archive mochawesome report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
+
+      # 12. Fail on test errors
+      - name: Fail on test errors
+        if: failure()
+        run: |
+          echo "Tests failed. Failing the job."
+          exit 1
