@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - wiola
   pull_request:
 
 jobs:
