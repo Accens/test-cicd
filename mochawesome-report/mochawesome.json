@@ -1,0 +1,185 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 1,
+    "pending": 0,
+    "failures": 2,
+    "start": "2024-12-12T10:07:20.090Z",
+    "end": "2024-12-12T10:07:24.715Z",
+    "duration": 4625,
+    "testsRegistered": 3,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "97269952-acf9-41b7-aeb7-1a1d3a9a4f15",
+      "title": "",
+      "fullFile": "C:\\Users\\Kasia\\test-cicd\\tests\\a11y-test.js",
+      "file": "\\tests\\a11y-test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+          "title": "Accessibility test with Playwright and Axe",
+          "fullFile": "C:\\Users\\Kasia\\test-cicd\\tests\\a11y-test.js",
+          "file": "\\tests\\a11y-test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Accessibility test with Playwright and Axe\"",
+              "fullTitle": "Accessibility test with Playwright and Axe \"before all\" hook in \"Accessibility test with Playwright and Axe\"",
+              "timedOut": false,
+              "duration": 161,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "browser = await chromium.launch();\n   context = await browser.newContext();\n   page = await context.newPage();",
+              "err": {},
+              "uuid": "e2ed3f3b-8131-4e0a-a2ee-2249d3cc4575",
+              "parentUUID": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Accessibility test with Playwright and Axe\"",
+              "fullTitle": "Accessibility test with Playwright and Axe \"after all\" hook in \"Accessibility test with Playwright and Axe\"",
+              "timedOut": false,
+              "duration": 107,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await page.close();\n   await browser.close();",
+              "err": {},
+              "uuid": "27ac0ab1-bafa-4e8a-b6ff-2e9505a8d7b9",
+              "parentUUID": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should have no serious accessibility violations on home",
+              "fullTitle": "Accessibility test with Playwright and Axe should have no serious accessibility violations on home",
+              "timedOut": false,
+              "duration": 1169,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await page.goto('http://localhost:3000');\n   // Run the accessibility test using the reusable function\n   await runAxeAccessibilityTest(page);",
+              "err": {},
+              "uuid": "a245aa19-ee9a-4d10-918b-4c69e8ca5480",
+              "parentUUID": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have no serious accessibility violations on revalidation",
+              "fullTitle": "Accessibility test with Playwright and Axe should have no serious accessibility violations on revalidation",
+              "timedOut": false,
+              "duration": 1445,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await page.goto('http://localhost:3000/revalidation');\n   // Run the accessibility test using the reusable function\n   await runAxeAccessibilityTest(page);",
+              "err": {
+                "message": "AssertionError: Found serious accessibility violations: [\n  {\n    \"id\": \"color-contrast\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.color\",\n      \"wcag2aa\",\n      \"wcag143\",\n      \"TTv5\",\n      \"TT13.c\",\n      \"EN-301-549\",\n      \"EN-9.1.4.3\",\n      \"ACT\"\n    ],\n    \"description\": \"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\n    \"help\": \"Elements must meet minimum color contrast ratio thresholds\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">    // ...render</span>\",\n        \"target\": [\n          \"div:nth-child(7) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      }\n    ]\n  }\n]\n\n1 !== 0\n",
+                "estack": "AssertionError [ERR_ASSERTION]: Found serious accessibility violations: [\n  {\n    \"id\": \"color-contrast\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.color\",\n      \"wcag2aa\",\n      \"wcag143\",\n      \"TTv5\",\n      \"TT13.c\",\n      \"EN-301-549\",\n      \"EN-9.1.4.3\",\n      \"ACT\"\n    ],\n    \"description\": \"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\n    \"help\": \"Elements must meet minimum color contrast ratio thresholds\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">    // ...render</span>\",\n        \"target\": [\n          \"div:nth-child(7) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      }\n    ]\n  }\n]\n\n1 !== 0\n\n    at runAxeAccessibilityTest (tests\\a11y-test.js:88:11)\n    at async Context.<anonymous> (tests\\a11y-test.js:49:4)",
+                "diff": "- 1\n+ 0\n"
+              },
+              "uuid": "f9e42fdc-d37d-41c8-9185-e0686e5db6b5",
+              "parentUUID": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have no serious accessibility violations on image-cdn",
+              "fullTitle": "Accessibility test with Playwright and Axe should have no serious accessibility violations on image-cdn",
+              "timedOut": false,
+              "duration": 1730,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await page.goto('http://localhost:3000/image-cdn');\n   // Run the accessibility test using the reusable function\n   await runAxeAccessibilityTest(page);",
+              "err": {
+                "message": "AssertionError: Found serious accessibility violations: [\n  {\n    \"id\": \"color-contrast\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.color\",\n      \"wcag2aa\",\n      \"wcag143\",\n      \"TTv5\",\n      \"TT13.c\",\n      \"EN-301-549\",\n      \"EN-9.1.4.3\",\n      \"ACT\"\n    ],\n    \"description\": \"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\n    \"help\": \"Elements must meet minimum color contrast ratio thresholds\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// In your component</span>\",\n        \"target\": [\n          \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(3) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">/* ... additional props */</span>\",\n        \"target\": [\n          \"div:nth-child(4) > span > span:nth-child(13)\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// &lt;== On the left, the original image</span>\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(1) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// ==&gt; On the right, explicitly using Netlify Image CDN endpoint for a responsive image</span>\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(4) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      }\n    ]\n  },\n  {\n    \"id\": \"scrollable-region-focusable\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.keyboard\",\n      \"wcag2a\",\n      \"wcag211\",\n      \"wcag213\",\n      \"TTv5\",\n      \"TT4.a\",\n      \"EN-301-549\",\n      \"EN-9.2.1.1\",\n      \"EN-9.2.1.3\"\n    ],\n    \"description\": \"Ensure elements that have scrollable content are accessible by keyboard\",\n    \"help\": \"Scrollable region must have keyboard access\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/scrollable-region-focusable?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"focusable-content\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"serious\",\n            \"message\": \"Element should have focusable content\"\n          },\n          {\n            \"id\": \"focusable-element\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"serious\",\n            \"message\": \"Element should be focusable\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element should have focusable content\\n  Element should be focusable\"\n      }\n    ]\n  }\n]\n\n2 !== 0\n",
+                "estack": "AssertionError [ERR_ASSERTION]: Found serious accessibility violations: [\n  {\n    \"id\": \"color-contrast\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.color\",\n      \"wcag2aa\",\n      \"wcag143\",\n      \"TTv5\",\n      \"TT13.c\",\n      \"EN-301-549\",\n      \"EN-9.1.4.3\",\n      \"ACT\"\n    ],\n    \"description\": \"Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds\",\n    \"help\": \"Elements must meet minimum color contrast ratio thresholds\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// In your component</span>\",\n        \"target\": [\n          \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(3) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(2) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">/* ... additional props */</span>\",\n        \"target\": [\n          \"div:nth-child(4) > span > span:nth-child(13)\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// &lt;== On the left, the original image</span>\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(1) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      },\n      {\n        \"any\": [\n          {\n            \"id\": \"color-contrast\",\n            \"data\": {\n              \"fgColor\": \"#5a5f79\",\n              \"bgColor\": \"#1b1e28\",\n              \"contrastRatio\": 2.65,\n              \"fontSize\": \"12.0pt (16px)\",\n              \"fontWeight\": \"normal\",\n              \"messageKey\": null,\n              \"expectedContrastRatio\": \"4.5:1\"\n            },\n            \"relatedNodes\": [\n              {\n                \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n                \"target\": [\n                  \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n                ]\n              }\n            ],\n            \"impact\": \"serious\",\n            \"message\": \"Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<span style=\\\"color:#767C9DB0;font-style:italic\\\">// ==&gt; On the right, explicitly using Netlify Image CDN endpoint for a responsive image</span>\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre > code > div:nth-child(4) > span > span\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element has insufficient color contrast of 2.65 (foreground color: #5a5f79, background color: #1b1e28, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1\"\n      }\n    ]\n  },\n  {\n    \"id\": \"scrollable-region-focusable\",\n    \"impact\": \"serious\",\n    \"tags\": [\n      \"cat.keyboard\",\n      \"wcag2a\",\n      \"wcag211\",\n      \"wcag213\",\n      \"TTv5\",\n      \"TT4.a\",\n      \"EN-301-549\",\n      \"EN-9.2.1.1\",\n      \"EN-9.2.1.3\"\n    ],\n    \"description\": \"Ensure elements that have scrollable content are accessible by keyboard\",\n    \"help\": \"Scrollable region must have keyboard access\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.10/scrollable-region-focusable?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"focusable-content\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"serious\",\n            \"message\": \"Element should have focusable content\"\n          },\n          {\n            \"id\": \"focusable-element\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"serious\",\n            \"message\": \"Element should be focusable\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"serious\",\n        \"html\": \"<pre style=\\\"margin:0;color:#a6accd;background:#1b1e28;padding:1em 0;overflow:auto\\\">\",\n        \"target\": [\n          \"section:nth-child(3) > .markdown > div[data-bright-theme=\\\"poimandres\\\"] > pre\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element should have focusable content\\n  Element should be focusable\"\n      }\n    ]\n  }\n]\n\n2 !== 0\n\n    at runAxeAccessibilityTest (tests\\a11y-test.js:88:11)\n    at async Context.<anonymous> (tests\\a11y-test.js:59:4)",
+                "diff": "- 2\n+ 0\n"
+              },
+              "uuid": "0d0c29c9-825c-4573-a2a2-4f179b7359f5",
+              "parentUUID": "5f7d6271-eaaf-4943-9be6-f2f6ac4798dd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a245aa19-ee9a-4d10-918b-4c69e8ca5480"
+          ],
+          "failures": [
+            "f9e42fdc-d37d-41c8-9185-e0686e5db6b5",
+            "0d0c29c9-825c-4573-a2a2-4f179b7359f5"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 4344,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 20000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
