@@ -33,7 +33,7 @@ export function StoredBlobsList({ lastMutationTime }) {
                         keys.map((keyName) => {
                             const isSelected = keyName === selectedKey;
                             return (
-                                <div
+                                <button
                                     key={keyName}
                                     onClick={() => {
                                         onSelect(keyName);
@@ -41,7 +41,7 @@ export function StoredBlobsList({ lastMutationTime }) {
                                     className={'w-full hover:bg-neutral-200 ' + (isSelected ? 'font-bold' : '')}
                                 >
                                     {keyName}
-                                </div>
+                                </button>
                             );
                         })
                     )}
