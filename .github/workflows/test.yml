@@ -44,10 +44,10 @@ jobs:
 
       - name: Start the app
         run: |
-        yarn start &
-        echo $! > .pidfile # Zapisz PID procesu, aby zatrzymać serwer później
+          yarn start &
+          echo $! > .pidfile # Zapisz PID procesu, aby zatrzymać serwer później
         env:
-        PORT: 3000 # Ustaw port, na którym działa aplikacja  
+          PORT: 3000 # Ustaw port, na którym działa aplikacja  
           
       # 7. Wait for the server to be ready
 
