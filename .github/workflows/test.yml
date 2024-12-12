@@ -30,10 +30,38 @@ jobs:
       # 3. Install dependencies
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        
+
+      - name: Install Playwright browsers
+        run: npx playwright install 
+
+      
       - name: Lint project
         run: npm run lint  
 
       # 5. Build the application
       - name: Build the app
         run: yarn build
+
+      - name: Start the app
+        run: |
+        yarn start &
+        echo $! > .pidfile # Zapisz PID procesu, aby zatrzymać serwer później
+        env:
+        PORT: 3000 # Ustaw port, na którym działa aplikacja  
+          
+      # 7. Wait for the server to be ready
+
+      - name: Wait for the server to start
+        run: npx wait-on http://localhost:3000
+
+
+      # 8. Run tests
+      - name: Run tests
+        run: yarn test
+
+
+      # 9. Stop the server
+
+      - name: Stop the app
+        run: kill $(cat .pidfile)
+
