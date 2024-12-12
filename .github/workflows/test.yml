@@ -63,17 +63,17 @@ jobs:
       - name: Stop the app
         run: kill $(cat .pidfile)
 
-#      # 11. Archive mochawesome report
-#      - name: Archive mochawesome report
-#        if: always()
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: mochawesome-report
-#          path: mochawesome-report/
-#
-#      # 12. Fail on test errors
-#      - name: Fail on test errors
-#        if: failure() # Uruchom tylko, jeśli poprzednie kroki zakończą się błędem
-#        run: |
-#          echo "Tests failed. Failing the job."
-#          exit 1
+      # 11. Archive mochawesome report
+      - name: Archive mochawesome report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
+
+      # 12. Fail on test errors
+      - name: Fail on test errors
+        if: failure() # Uruchom tylko, jeśli poprzednie kroki zakończą się błędem
+        run: |
+          echo "Tests failed. Failing the job."
+          exit 1
