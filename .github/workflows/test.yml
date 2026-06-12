@@ -32,13 +32,41 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
  
-      # 4. Run Linter
-      - name: Run ESLint
-        run: yarn lint
+      # 4. Install Playwright browsers
+      - name: Install Playwright browsers
+        run: npx playwright install
  
       # 5. Build the application
       - name: Build the app
         run: yarn build
+ 
+      # 6. Start the application in the background
+      - name: Start the app
+        run: |
+          yarn start &
+          echo $! > .pidfile # Zapisz PID procesu, aby zatrzymać serwer później
+        env:
+          PORT: 3000 # Ustaw port, na którym działa aplikacja
+ 
+      # 7. Wait for the server to be ready
+      - name: Wait for the server to start
+        run: npx wait-on http://localhost:3000
+ 
+      # 8. Run tests
+      - name: Run tests
+        run: yarn test
+ 
+      # 9. Stop the server
+      - name: Stop the app
+        run: kill $(cat .pidfile)
+ 
+      # 10. Archive mochawesome report
+      - name: Archive mochawesome report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: mochawesome-report/
       
       # 11. Fail on test errors
       - name: Fail on test errors
