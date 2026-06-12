@@ -21,9 +21,7 @@ const url = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
 async function RandomArticleComponent() {
     const randomArticle = await fetch(url, {
         next: { revalidate: ${revalidateTTL}, tags: ['${tagName}'] }
-    });
-    // ...render
-}
+    });}
 ~~~
 
 After the set time has passed, the first request for this page would trigger its rebuild in the background. When the new page is ready, subsequent requests would return the new page - 

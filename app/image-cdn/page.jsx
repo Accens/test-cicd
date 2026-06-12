@@ -24,7 +24,6 @@ When running on Netlify, \`next/image\` is automatically set-up to use Netlify I
 ~~~jsx
 import Image from 'next/image';
 
-// In your component
 <Image src="/images/corgi.jpg" alt="Corgi" /* ... additional props */ />
 ~~~
 `;
@@ -34,7 +33,6 @@ In the code below, a regular \`<img>\` tag is used in both cases for a framework
 Other than using \`next/image\` or rolling your own \`<img>\` tags, you can also use the excellent [unpic-img](https://unpic.pics/).
 
 ~~~jsx
-// <== On the left, the original image
 <img src="/images/corgi.jpg" alt="Corgi" />
 
 // ==> On the right, explicitly using Netlify Image CDN endpoint for a responsive image
